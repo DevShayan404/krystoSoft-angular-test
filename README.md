@@ -1,0 +1,1 @@
+# krystoSoft-angular-test
