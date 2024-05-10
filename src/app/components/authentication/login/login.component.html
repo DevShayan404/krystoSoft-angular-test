@@ -1,0 +1,134 @@
+<section>
+  <div class="login_bg"></div>
+  <div class="form_div">
+    <h1>User Registeration</h1>
+    <form [formGroup]="userRegistrationForm" (ngSubmit)="onSubmit()">
+      <div class="divider">
+        <div class="divider_inner form_input">
+          <input
+            type="text"
+            placeholder="First name"
+            formControlName="firstName"
+            [ngClass]="
+              userRegistrationForm.controls['firstName'].invalid &&
+              (userRegistrationForm.controls['firstName'].touched ||
+                userRegistrationForm.controls['firstName'].dirty)
+                ? 'is-invalid'
+                : 'is-valid'
+            "
+          />
+          @if(userRegistrationForm.controls['firstName'].invalid &&
+          (userRegistrationForm.controls['firstName'].touched
+          ||userRegistrationForm.controls['firstName'].dirty)){
+          <div class="invalid-feedback">Firstname is required.</div>
+          }
+        </div>
+
+        <div class="divider_inner form_input">
+          <input
+            type="text"
+            placeholder="Last name"
+            formControlName="lastName"
+            [ngClass]="
+              userRegistrationForm.controls['lastName'].invalid &&
+              (userRegistrationForm.controls['lastName'].touched ||
+                userRegistrationForm.controls['lastName'].dirty)
+                ? 'is-invalid'
+                : 'is-valid'
+            "
+          />
+          @if(userRegistrationForm.controls['lastName'].invalid &&
+          (userRegistrationForm.controls['lastName'].touched
+          ||userRegistrationForm.controls['lastName'].dirty)){
+          <div class="invalid-feedback">Lastname is required.</div>
+          }
+        </div>
+      </div>
+
+      <div class="form_input">
+        <input
+          type="email"
+          placeholder="E-mail"
+          formControlName="email"
+          [ngClass]="
+            userRegistrationForm.controls['email'].invalid &&
+            (userRegistrationForm.controls['email'].touched ||
+              userRegistrationForm.controls['email'].dirty)
+              ? 'is-invalid'
+              : 'is-valid'
+          "
+        />
+        @if(userRegistrationForm.controls['email'].invalid &&
+        (userRegistrationForm.controls['email'].touched
+        ||userRegistrationForm.controls['email'].dirty)){
+
+        <div class="invalid-feedback">
+          @if(userRegistrationForm.controls['email'].errors?.['required']){
+          <span>E-mail is required</span>
+          } @if(userRegistrationForm.controls['email'].errors?.['email']){
+          <span>Invalid e-mail</span>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="form_input">
+        <input
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+          [ngClass]="
+            userRegistrationForm.controls['password'].invalid &&
+            (userRegistrationForm.controls['password'].touched ||
+              userRegistrationForm.controls['password'].dirty)
+              ? 'is-invalid'
+              : 'is-valid'
+          "
+        />
+        @if(userRegistrationForm.controls['password'].invalid &&
+        (userRegistrationForm.controls['password'].touched
+        ||userRegistrationForm.controls['password'].dirty)){
+
+        <div class="invalid-feedback">
+          @if(userRegistrationForm.controls['password'].errors?.['required']){
+          <span>Password is required</span>
+          }
+          @if(userRegistrationForm.controls['password'].errors?.['minlength']){
+          <span>Password must be at least 8 characters.</span>
+          } @if(userRegistrationForm.controls['password'].errors?.['pattern'] &&
+          !userRegistrationForm.controls['password'].errors?.['minlength']){
+          <span
+            >Password must contain at least one uppercase, lowercase and
+            number.</span
+          >
+          }
+        </div>
+        }
+      </div>
+
+      <div class="form_input">
+        <input
+          type="password"
+          placeholder="Confirmed password"
+          formControlName="confirmedPassword"
+          [ngClass]="
+            userRegistrationForm.controls['confirmedPassword'].invalid &&
+            (userRegistrationForm.controls['confirmedPassword'].touched ||
+              userRegistrationForm.controls['confirmedPassword'].dirty)
+              ? 'is-invalid'
+              : 'is-valid'
+          "
+        />
+        @if(userRegistrationForm.controls['confirmedPassword'].errors?.['mismatch']
+        && (userRegistrationForm.controls['confirmedPassword'].touched ||
+        userRegistrationForm.controls['confirmedPassword'].dirty)){
+        <div class="invalid-feedback">
+          <span>Passwords do not match.</span>
+        </div>
+        }
+      </div>
+
+      <button appHover>Submit</button>
+    </form>
+  </div>
+</section>
