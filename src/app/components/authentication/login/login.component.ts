@@ -57,6 +57,7 @@ export class LoginComponent {
     if (this.userRegistrationForm.valid) {
       const userData: userRegistration = this.userRegistrationForm.value;
       console.log(userData);
+      this.userRegistrationForm.reset();
     } else {
       Object.keys(this.userRegistrationForm.controls).forEach((key) => {
         this.userRegistrationForm.get(key)?.markAsTouched();
